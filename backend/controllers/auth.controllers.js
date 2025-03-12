@@ -45,13 +45,39 @@ export const signup = async (req, res) => {
             res.status(400).json({error:"Invalid user data"})
         }
     } catch (error) {
-        console.log(error);
+        console.error(`Error in signup controller: ${error}`);
+        res.status(500).json({error:"Internal server error"})
         
     }
 }
 
-export const login = asynce(req, res) => {
-    console.log("login");  
+export const login = async (req, res) => {
+    try {
+        const { userName, password } = req.body;
+
+        const user = await User.findOne({ userName })
+        const isPasswordCorrect = await bcrypt.compare(password,user?.password || "")
+
+        if (!user || !isPasswordCorrect) {
+           return res.status(400).json({ error: "Invalid username or password" })
+        } 
+        
+        generateTokenAndSetCookie(user._id, res);
+
+        res.status(200).json({
+            _id: user._id,
+            fullName: user.fullName,
+            userName: user.userName,
+            profilePic: user.profilePic
+        
+        }) 
+        
+
+
+    } catch (error) {
+        console.error(`Error in login controller: ${error}`);
+        res.status(500).json({error:"Internal server error"})
+    }
 }
 
 export const logout = (req, res) => {
