@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs"
 import User from "../models/user.model.js";
+import generateTokenAndSetCookie from "../utils/generateTokens.js";
 
 export const signup = async (req, res) => {
     try {
@@ -28,24 +29,29 @@ export const signup = async (req, res) => {
             profilePic :gender === 'male' ? boyProfilePic : girlProfilePic
         })
 
-        await newUser.save();
+        if (newUser) {
+            generateTokenAndSetCookie(newUser._id,res);
 
-        res.status(201).json({
-            _id: newUser._id,
-            fullName: newUser.fullName,
-            userName: newUser.userName,
-            profilePic: newUser.profilePic
+            await newUser.save();
+
+            res.status(201).json({
+                _id: newUser._id,
+                fullName: newUser.fullName,
+                userName: newUser.userName,
+                profilePic: newUser.profilePic
             
-        })
+            })
+        } else {
+            res.status(400).json({error:"Invalid user data"})
+        }
     } catch (error) {
         console.log(error);
         
     }
 }
 
-export const login = (req, res) => {
-    console.log("login");
-    
+export const login = asynce(req, res) => {
+    console.log("login");  
 }
 
 export const logout = (req, res) => {
