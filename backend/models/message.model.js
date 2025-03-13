@@ -11,16 +11,16 @@ const messageSchema = new mongoose.Schema(
         receiverId: {
             type: mongooose.Schema.Types.ObjectId,
             ref: "User",
-            unique:true
+            unique: true
         },
         message: {
             type: String,
-            required: true
+            required: true,
         },
         
     },
-    {timestamps: true}
-)
+    { timestamps: true }
+);
 
 const Message = mongoose.model("Message", messageSchema)
 
