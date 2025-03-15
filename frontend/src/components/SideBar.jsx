@@ -1,4 +1,12 @@
+import Messages from "./Messages";
+
 function SideBar() {
+  const userMessages = [
+    { id: 1, userImg: "user1.jpg", username: "Alice", time: "9:15 AM", message: "Hey! How's it going?", unreadCount: 2 },
+    { id: 2, userImg: "user1.jpg", username: "Bob", time: "10:30 AM", message: "Let's catch up later.", unreadCount: 1 },
+    { id: 3, userImg: "user1.jpg", username: "Charlie", time: "Yesterday", message: "See you soon!", unreadCount: 0 },
+  ];
+
   return (
     <div className="sidebar-container">
       {/* User Details Section */}
@@ -17,19 +25,20 @@ function SideBar() {
         <input type="search" name="search-messages" id="search-bar" placeholder="Search messages..." />
       </div>
 
-      <hr />
+      <hr className="divider" />
 
       {/* User Messages Section */}
       <div className="user-msg">
-        <div className="user-msg-info">
-          <div className="user-img">
-            <img src="messanger.jpg" alt="User Profile" />
-          </div>
-          <div className="msg-content">
-            <h3>John Doe</h3>
-            <span>Hi, How are you?</span>
-          </div>
-        </div>
+        {userMessages.map((msg) => (
+          <Messages 
+            key={msg.id}
+            userImg={msg.userImg}
+            username={msg.username}
+            time={msg.time}
+            message={msg.message}
+            unreadCount={msg.unreadCount}
+          />
+        ))}
       </div>
     </div>
   );
