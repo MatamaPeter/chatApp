@@ -160,3 +160,60 @@
   justify-content: center;
   align-items: center;
 }
+
+/* ✅ Conversation Container */
+.conversation-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px;
+  max-height: 500px;
+  overflow-y: auto;
+  width: 700px;
+}
+
+/* ✅ Scrollbar Styling */
+.conversation-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.conversation-container::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+/* ✅ Message Styling */
+.message {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 15px;
+  font-size: 14px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+}
+
+/* ✅ Sent Messages */
+.sent {
+  align-self: flex-end;
+  background: #4399FF;
+  color: white;
+  border-bottom-right-radius: 5px;
+}
+
+/* ✅ Received Messages */
+.received {
+  align-self: flex-start;
+  background: #e0e0e0;
+  color: #333;
+  border-bottom-left-radius: 5px;
+}
+
+/* ✅ Timestamp */
+.timestamp {
+  font-size: 11px;
+  margin-top: 5px;
+  text-align: right;
+  opacity: 0.7;
+}

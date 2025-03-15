@@ -1,27 +1,33 @@
-// eslint-disable react/props-type
-function Messages(props) {
+import PropTypes from "prop-types";
+
+function Messages({ userImg, username, time, message, unreadCount }) {
   return (
    <div className="user-msg-info">
-
         <div className="user-img">
-        <img src="messanger.jpg" alt="User Profile" />
+          <img src={userImg} alt="User Profile" />
         </div>
 
         <div className="msg-content">
-              <div className="username-time">
-                  <h3>{props.username}</h3>
-                  <h6>{props.time}</h6>
-              </div>
-              <div className="message-counter">
-                  <span>{props.message}</span>
-                  <div className="counter">{props.unreadCount}</div>
-              </div>
-        
-       
+          <div className="username-time">
+            <h3>{username}</h3>
+            <h6>{time}</h6>
+          </div>
+          <div className="message-counter">
+            <span>{message}</span>
+            {unreadCount > 0 && <div className="counter">{unreadCount}</div>}
+          </div>
         </div>
-          
     </div>
-  )
+  );
 }
 
-export default Messages
+// ✅ Adding PropTypes for ESLint compliance
+Messages.propTypes = {
+  userImg: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  unreadCount: PropTypes.number.isRequired,
+};
+
+export default Messages;

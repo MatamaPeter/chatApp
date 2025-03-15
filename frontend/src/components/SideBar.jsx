@@ -1,10 +1,11 @@
 import Messages from "./Messages";
 
 function SideBar() {
+  // Example user messages (Replace with real data later)
   const userMessages = [
     { id: 1, userImg: "user1.jpg", username: "Alice", time: "9:15 AM", message: "Hey! How's it going?", unreadCount: 2 },
     { id: 2, userImg: "user1.jpg", username: "Bob", time: "10:30 AM", message: "Let's catch up later.", unreadCount: 1 },
-    { id: 3, userImg: "user1.jpg", username: "Charlie", time: "Yesterday", message: "See you soon!", unreadCount: 0 },
+    { id: 3, userImg: "user2.jpg", username: "Charlie", time: "Yesterday", message: "See you soon!", unreadCount: 0 },
   ];
 
   return (
@@ -38,6 +39,7 @@ function SideBar() {
             message={msg.message}
             unreadCount={msg.unreadCount}
           />
+          
         ))}
       </div>
     </div>
